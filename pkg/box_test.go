@@ -8,14 +8,17 @@ import (
 	"testing"
 )
 
-func TestBox_GetStats(t *testing.T) {
+func TestBox_GetPlayTime(t *testing.T) {
 	steamAPIKey := os.Getenv("STEAM_API_KEY")
 	steamID, _ := strconv.ParseUint(os.Getenv("STEAM_ID"), 10, 64)
 	appIDs := os.Getenv("APP_ID")
 	appIDList := make([]uint32, 0)
 
 	for _, appID := range strings.Split(appIDs, ",") {
-		appid, _ := strconv.ParseUint(appID, 10, 32)
+		appid, err := strconv.ParseUint(appID, 10, 32)
+		if err != nil {
+			continue
+		}
 		appIDList = append(appIDList, uint32(appid))
 	}
 
