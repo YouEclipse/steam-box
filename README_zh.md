@@ -44,7 +44,7 @@
    - **STEAM_ID:** 你的 steam 64 位 ID. 
 1. 如果你想展示某几个指定的游戏,可以把他们的 ID 设置在环境变量 **APP_ID**：
   - 如 `APP_ID=431960,730`
-  - 你可以在对应游戏的 steam 商店的 url 获取到游戏 id:`https://store.steampowered.com/app/`**730**`/CounterStrike_Global_Offensive/`
+  - 你可以在对应游戏的 steam 商店的 url 获取到游戏 id: `https://store.steampowered.com/app/`**730**`/CounterStrike_Global_Offensive/`
   
 ## 🕵️ 工作原理
 - 基于 [Steam API](https://partner.steamgames.com/doc/webapi)  获取游戏的游玩时间

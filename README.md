@@ -40,7 +40,7 @@ English | [简体中文](./README_zh.md)
    - **STEAM_ID:** The steam ID of your account. 
 1. If you want to show specific games,put the ids in environmet variable **APP_ID**:
    - like `APP_ID=431960,730`
-   - you can get the id of a game from the store url:`https://store.steampowered.com/app/`**730**`/CounterStrike_Global_Offensive/`
+   - you can get the id of a game from the store url: `https://store.steampowered.com/app/`**730**`/CounterStrike_Global_Offensive/`
 
 ## 🕵️ How it works
 - Get your games playtime from [Steamwork Web API](https://partner.steamgames.com/doc/webapi) 
