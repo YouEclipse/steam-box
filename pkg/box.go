@@ -78,7 +78,7 @@ func (b *Box) GetPlayTime(ctx context.Context, steamID uint64, appID ...uint32) 
 		hours := int(math.Floor(float64(game.PlaytimeForever / 60)))
 		mins := int(math.Floor(float64(game.PlaytimeForever % 60)))
 
-		line := pad(game.Name, " ", 40) + " " +
+		line := pad(game.Name, " ", 35) + " " +
 			pad(fmt.Sprintf("%d hrs %d mins", hours, mins), "", 16)
 		lines = append(lines, line)
 		max++
