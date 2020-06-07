@@ -4,7 +4,7 @@
 <p align="center">
   <img width="400" src="https://user-images.githubusercontent.com/8252317/83969719-1675be80-a904-11ea-8776-92342421e4ee.png">
   <h3 align="center">steam-box</h3>
-  <p align="center"><img width="20" height="20" src="https://store.steampowered.com/favicon.ico"></img> Update a pinned gist to contain your Steam playtime leaderboard. </p>
+  <p align="center"><img width="20" height="20" src="https://store.steampowered.com/favicon.ico"></img> 将你的 steam 游玩时间显示在 pined gist. </p>
   
    <p align="center">
     <a href="https://github.com/YouEclipse/steam-box/workflows/Update%20gist%20with%20Steam%20Playtime/badge.svg"><img src="https://github.com/YouEclipse/steam-box/workflows/Update%20gist%20with%20Steam%20Playtime/badge.svg" alt="Update gist with Steam Playtime"></a>
