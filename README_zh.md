@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img width="400" src="https://user-images.githubusercontent.com/8252317/83971232-dc5cea80-a90c-11ea-9763-4ac2ac4648f0.png">
+  <img width="400" src="https://user-images.githubusercontent.com/8252317/83985151-9e8eaf00-a96a-11ea-9b3c-b654dc9bee2f.png">
   <h3 align="center">steam-box</h3>
   <p align="center"><img width="20" height="20" src="https://store.steampowered.com/favicon.ico"></img> Update a pinned gist to contain your Steam playtime leaderboard. </p>
   
