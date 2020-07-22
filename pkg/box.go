@@ -103,6 +103,7 @@ func getNameEmoji(id int, name string) string {
 		578080: "🍳 ", // PUBG
 		431960: "💻 ", // Wallpaper Engine
 		8930:   "🌏 ", // Sid Meier's Civilization V
+		359550: "🔫 "  // Tom Clancy's Rainbow Six Siege
 	}
 
 	if emoji, ok := nameEmojiMap[id]; ok {
