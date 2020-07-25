@@ -78,7 +78,6 @@ func main() {
 		}
 
 		content := bytes.NewBuffer(nil)
-		content.WriteString("\n")
 		content.WriteString(strings.Join(lines, "\n"))
 
 		err = box.UpdateMarkdown(ctx, title, markdownFile, content.Bytes())
