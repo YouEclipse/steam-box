@@ -74,7 +74,7 @@ func main() {
 	if updateMarkdown && markdownFile != "" {
 		title := filename
 		if updateGist {
-			title = fmt.Sprintf(`####  <a href="https://gist.github.com/%s" target="_blank">%s</a>`, gistID, title)
+			title = fmt.Sprintf(`#### <a href="https://gist.github.com/%s" target="_blank">%s</a>`, gistID, title)
 		}
 
 		content := bytes.NewBuffer(nil)
