@@ -33,5 +33,5 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Update-gist
-      run:  go run ./cmd/main.go
+      run:  go run ./cmd/box/main.go
 
