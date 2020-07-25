@@ -102,7 +102,7 @@ func (b *Box) UpdateMarkdown(ctx context.Context, title, filename string, conten
 
 	newMd := bytes.NewBuffer(nil)
 	newMd.Write(before)
-	//newMd.WriteString("\n" + title + "\n")
+	newMd.WriteString("\n" + title + "\n")
 	newMd.WriteString("```text\n")
 	newMd.Write(content)
 	newMd.WriteString("\n")

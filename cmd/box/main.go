@@ -77,7 +77,7 @@ func main() {
 			title = fmt.Sprintf(`####  <a href="https://gist.github.com/%s" target="_blank">%s</a>`, gistID, title)
 		}
 
-		content := bytes.NewBuffer([]byte(filename))
+		content := bytes.NewBuffer(nil)
 		content.WriteString("\n")
 		content.WriteString(strings.Join(lines, "\n"))
 
