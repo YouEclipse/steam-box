@@ -9,10 +9,10 @@ import (
 	"os"
 	"sort"
 	"strings"
-	"unicode/utf8"
 
 	steam "github.com/YouEclipse/steam-go/pkg"
 	"github.com/google/go-github/github"
+	"github.com/mattn/go-runewidth"
 )
 
 // Box defines the steam box.
@@ -89,6 +89,7 @@ func (b *Box) GetPlayTime(ctx context.Context, steamID uint64, appID ...uint32) 
 	return lines, nil
 }
 
+// UpdateMarkdown updates the content to the markdown file.
 func (b *Box) UpdateMarkdown(ctx context.Context, title, filename string, content []byte) error {
 	md, err := ioutil.ReadFile(filename)
 	if err != nil {
@@ -119,7 +120,8 @@ func (b *Box) UpdateMarkdown(ctx context.Context, title, filename string, conten
 }
 
 func pad(s, pad string, targetLength int) string {
-	padding := targetLength - utf8.RuneCountInString(s)
+	padding := targetLength - runewidth.StringWidth(s)
+
 	if padding <= 0 {
 		return s
 	}
