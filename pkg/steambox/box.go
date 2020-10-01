@@ -185,5 +185,9 @@ func getNameEmoji(id int, name string) string {
 		return emoji + name
 	}
 
+	if name == "Unknown Game" {
+		return "❓ " + name
+	}
+
 	return "🎮 " + name
 }
