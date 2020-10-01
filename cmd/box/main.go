@@ -37,13 +37,13 @@ func main() {
 	}
 
 	multiLined := false // boolean for whether hours should have their own line
-	if os.Getenv("MULTILINE") != "" {
-		multiLined, err = strconv.ParseBool(os.Getenv("MULTILINE"))
-		if err != nil {
-			panic("multiLined option error: "+ err.Error())
+	if os.Getenv("LINE_OPTION") != "" {
+		lineOption := os.Getenv("LINE_OPTION")
+		if lineOption == "MULTI" {
+			multiLined = true
 		}
 	}
-	
+
 	updateOption := os.Getenv("UPDATE_OPTION") // options for update: GIST (Gist only), MARKDOWN (README only), GIST_AND_MARKDOWN (Gist and README)
 	markdownFile := os.Getenv("MARKDOWN_FILE") // the markdown filename (e.g. MYFILE.md)
 
