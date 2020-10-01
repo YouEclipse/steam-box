@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+	var err error
 	steamAPIKey := os.Getenv("STEAM_API_KEY")
 	steamID, _ := strconv.ParseUint(os.Getenv("STEAM_ID"), 10, 64)
 	appIDs := os.Getenv("APP_ID")
@@ -30,7 +31,19 @@ func main() {
 	ghUsername := os.Getenv("GH_USER")
 	gistID := os.Getenv("GIST_ID")
 
-	steamOption := os.Getenv("STEAM_OPTION") // options for types of games to list: RECENT (recently played games), ALLTIME (playtime of games in descending order)
+	steamOption := "ALLTIME" // options for types of games to list: RECENT (recently played games), ALLTIME <default> (playtime of games in descending order)
+	if os.Getenv("STEAM_OPTION") != "" {
+		steamOption = os.Getenv("STEAM_OPTION")
+	}
+
+	multiLined := false // boolean for whether hours should have their own line
+	if os.Getenv("MULTILINE") != "" {
+		multiLined, err = strconv.ParseBool(os.Getenv("MULTILINE"))
+		if err != nil {
+			panic("multiLined option error: "+ err.Error())
+		}
+	}
+	
 	updateOption := os.Getenv("UPDATE_OPTION") // options for update: GIST (Gist only), MARKDOWN (README only), GIST_AND_MARKDOWN (Gist and README)
 	markdownFile := os.Getenv("MARKDOWN_FILE") // the markdown filename (e.g. MYFILE.md)
 
@@ -51,18 +64,17 @@ func main() {
 	var (
 		filename string
 		lines []string
-		err error
 	)
 
 	if steamOption == "ALLTIME" {
 		filename = "🎮 Steam playtime leaderboard"
-		lines, err = box.GetPlayTime(ctx, steamID, appIDList...)
+		lines, err = box.GetPlayTime(ctx, steamID, multiLined, appIDList...)
 		if err != nil {
 			panic("GetPlayTime err:" + err.Error())
 		}
 	} else if steamOption == "RECENT" {
 		filename = "🎮 Recently played Steam games"
-		lines, err = box.GetRecentGames(ctx, steamID)
+		lines, err = box.GetRecentGames(ctx, steamID, multiLined)
 		if err != nil {
 			panic("GetRecentGames err:" + err.Error())
 		}

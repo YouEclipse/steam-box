@@ -53,7 +53,7 @@ func (b *Box) UpdateGist(ctx context.Context, id string, gist *github.Gist) erro
 }
 
 // GetPlayTime gets the top 5 Steam games played in descending order from the Steam API.
-func (b *Box) GetPlayTime(ctx context.Context, steamID uint64, appID ...uint32) ([]string, error) {
+func (b *Box) GetPlayTime(ctx context.Context, steamID uint64, multiLined bool, appID ...uint32) ([]string, error) {
 	params := &steam.GetOwnedGamesParams{
 		SteamID:                steamID,
 		IncludeAppInfo:         true,
@@ -81,16 +81,23 @@ func (b *Box) GetPlayTime(ctx context.Context, steamID uint64, appID ...uint32) 
 		hours := int(math.Floor(float64(game.PlaytimeForever / 60)))
 		mins := int(math.Floor(float64(game.PlaytimeForever % 60)))
 
-		line := pad(getNameEmoji(game.Appid, game.Name), " ", 35) + " " +
-			pad(fmt.Sprintf("🕘 %d hrs %d mins", hours, mins), "", 16)
-		lines = append(lines, line)
+		if multiLined {
+			gameLine := getNameEmoji(game.Appid, game.Name)
+			lines = append(lines, gameLine)
+			hoursLine := fmt.Sprintf("	🕘 %d hrs %d mins", hours, mins)
+			lines = append(lines, hoursLine)
+		} else {
+			line := pad(getNameEmoji(game.Appid, game.Name), " ", 35) + " " +
+				pad(fmt.Sprintf("🕘 %d hrs %d mins", hours, mins), "", 16)
+			lines = append(lines, line)
+		} 
 		max++
 	}
 	return lines, nil
 }
 
 // GetRecentGames gets 5 recently played games from the Steam API.
-func (b *Box) GetRecentGames (ctx context.Context, steamID uint64) ([]string, error) {
+func (b *Box) GetRecentGames (ctx context.Context, steamID uint64, multiLined bool) ([]string, error) {
 	params := &steam.GetRecentlyPlayedGamesParams{
 		SteamID:                steamID,
 		Count:                  5,
@@ -115,9 +122,16 @@ func (b *Box) GetRecentGames (ctx context.Context, steamID uint64) ([]string, er
 		hours := int(math.Floor(float64(game.PlaytimeForever / 60)))
 		mins := int(math.Floor(float64(game.PlaytimeForever % 60)))
 
-		line := pad(getNameEmoji(game.Appid, game.Name), " ", 37) + " " +
-			pad(fmt.Sprintf("🕘 %d hrs %d mins", hours, mins), "", 16)
-		lines = append(lines, line)
+		if multiLined {
+			gameLine := getNameEmoji(game.Appid, game.Name)
+			lines = append(lines, gameLine)
+			hoursLine := fmt.Sprintf("	🕘 %d hrs %d mins", hours, mins)
+			lines = append(lines, hoursLine)
+		} else {
+			line := pad(getNameEmoji(game.Appid, game.Name), " ", 35) + " " +
+				pad(fmt.Sprintf("🕘 %d hrs %d mins", hours, mins), "", 16)
+			lines = append(lines, line)
+		} 
 		max++
 	}
 	return lines, nil
@@ -174,11 +188,13 @@ func getNameEmoji(id int, name string) string {
 		730:    "🔫 ", // CS:GO
 		8930:   "🌏 ", // Sid Meier's Civilization V
 		252950: "🚀 ", // Rocket League
+		269950: "✈️ ", // X-Plane 11
 		271590: "🚓 ", // GTA 5
 		359550: "🔫 ", // Tom Clancy's Rainbow Six Siege
 		431960: "💻 ", // Wallpaper Engine
 		578080: "🍳 ", // PUBG
 		945360: "🕵️‍♂️ ", // Among Us
+		1250410: "🛩️ ", // Microsoft Flight Simulator
 	}
 
 	if emoji, ok := nameEmojiMap[id]; ok {
