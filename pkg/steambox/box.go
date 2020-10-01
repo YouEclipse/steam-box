@@ -108,10 +108,14 @@ func (b *Box) GetRecentGames (ctx context.Context, steamID uint64) ([]string, er
 			break
 		}
 
+		if game.Name == "" {
+			game.Name = "Unknown Game"
+		}
+
 		hours := int(math.Floor(float64(game.PlaytimeForever / 60)))
 		mins := int(math.Floor(float64(game.PlaytimeForever % 60)))
 
-		line := pad(getNameEmoji(game.Appid, game.Name), " ", 35) + " " +
+		line := pad(getNameEmoji(game.Appid, game.Name), " ", 33) + " " +
 			pad(fmt.Sprintf("🕘 %d hrs %d mins", hours, mins), "", 16)
 		lines = append(lines, line)
 		max++
@@ -162,8 +166,8 @@ func pad(s, pad string, targetLength int) string {
 func getNameEmoji(id int, name string) string {
 	// hard code some game's emoji
 	var nameEmojiMap = map[int]string{
-		70:     "**λ** ", // Half-Life
-		220:    "**λ²** ", // Half-Life 2
+		70:     "λ ", // Half-Life
+		220:    "λ² ", // Half-Life 2
 		500:    "🧟 ", // Left 4 Dead
 		550:    "🧟 ", // Left 4 Dead 2
 		570:    "⚔️ ", // Dota 2
