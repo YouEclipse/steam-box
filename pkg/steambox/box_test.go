@@ -32,8 +32,23 @@ func TestBox_GetPlayTime(t *testing.T) {
 		t.Error(err)
 	}
 	t.Log(strings.Join(lines, "\n"))
-
 }
+
+func TestBox_GetRecentGames(t *testing.T) {
+	steamAPIKey := os.Getenv("STEAM_API_KEY")
+	steamID, _ := strconv.ParseUint(os.Getenv("STEAM_ID"), 10, 64)
+
+	ghToken := os.Getenv("GH_TOKEN")
+	ghUsername := os.Getenv("GH_USER")
+
+	box := NewBox(steamAPIKey, ghUsername, ghToken)
+	lines, err := box.GetRecentGames(context.Background(), steamID)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(strings.Join(lines, "\n"))
+}
+
 func TestBox_Readme(t *testing.T) {
 
 	ghToken := os.Getenv("GH_TOKEN")
