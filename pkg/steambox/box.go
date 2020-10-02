@@ -84,7 +84,7 @@ func (b *Box) GetPlayTime(ctx context.Context, steamID uint64, multiLined bool, 
 		if multiLined {
 			gameLine := getNameEmoji(game.Appid, game.Name)
 			lines = append(lines, gameLine)
-			hoursLine := fmt.Sprintf("							🕘 %d hrs %d mins", hours, mins)
+			hoursLine := fmt.Sprintf("						    🕘 %d hrs %d mins", hours, mins)
 			lines = append(lines, hoursLine)
 		} else {
 			line := pad(getNameEmoji(game.Appid, game.Name), " ", 35) + " " +
@@ -125,7 +125,7 @@ func (b *Box) GetRecentGames (ctx context.Context, steamID uint64, multiLined bo
 		if multiLined {
 			gameLine := getNameEmoji(game.Appid, game.Name)
 			lines = append(lines, gameLine)
-			hoursLine := fmt.Sprintf("							🕘 %d hrs %d mins", hours, mins)
+			hoursLine := fmt.Sprintf("						    🕘 %d hrs %d mins", hours, mins)
 			lines = append(lines, hoursLine)
 		} else {
 			line := pad(getNameEmoji(game.Appid, game.Name), " ", 35) + " " +
