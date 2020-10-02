@@ -52,11 +52,11 @@ func TestBox_GetRecentGames(t *testing.T) {
 	ghToken := os.Getenv("GH_TOKEN")
 	ghUsername := os.Getenv("GH_USER")
 
-	multiLined := false // boolean for whether hours should have their own line
+	multiLined := false // boolean for whether hours should have their own line - YES = true, NO = false
 	if os.Getenv("MULTILINE") != "" {
-		multiLined, err = strconv.ParseBool(os.Getenv("MULTILINE"))
-		if err != nil {
-			panic("multiLined option error: "+ err.Error())
+		lineOption := os.Getenv("MULTILINE")
+		if lineOption == "YES" {
+			multiLined = true
 		}
 	}
 
