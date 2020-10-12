@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+	var err error
 	steamAPIKey := os.Getenv("STEAM_API_KEY")
 	steamID, _ := strconv.ParseUint(os.Getenv("STEAM_ID"), 10, 64)
 	appIDs := os.Getenv("APP_ID")
@@ -30,8 +31,21 @@ func main() {
 	ghUsername := os.Getenv("GH_USER")
 	gistID := os.Getenv("GIST_ID")
 
-	updateOption := os.Getenv("UPDATE_OPTION") // options for update: GIST,MARKDOWN,GIST_AND_MARKDOWN
-	markdownFile := os.Getenv("MARKDOWN_FILE") // the markdown filename
+	steamOption := "ALLTIME" // options for types of games to list: RECENT (recently played games), ALLTIME <default> (playtime of games in descending order)
+	if os.Getenv("STEAM_OPTION") != "" {
+		steamOption = os.Getenv("STEAM_OPTION")
+	}
+
+	multiLined := false // boolean for whether hours should have their own line - YES = true, NO = false
+	if os.Getenv("MULTILINE") != "" {
+		lineOption := os.Getenv("MULTILINE")
+		if lineOption == "YES" {
+			multiLined = true
+		}
+	}
+	
+	updateOption := os.Getenv("UPDATE_OPTION") // options for update: GIST (Gist only), MARKDOWN (README only), GIST_AND_MARKDOWN (Gist and README)
+	markdownFile := os.Getenv("MARKDOWN_FILE") // the markdown filename (e.g. MYFILE.md)
 
 	var updateGist, updateMarkdown bool
 	if updateOption == "MARKDOWN" {
@@ -47,12 +61,24 @@ func main() {
 
 	ctx := context.Background()
 
-	lines, err := box.GetPlayTime(ctx, steamID, appIDList...)
-	if err != nil {
-		panic("GetPlayTime err:" + err.Error())
-	}
+	var (
+		filename string
+		lines []string
+	)
 
-	filename := "🎮 Steam playtime leaderboard"
+	if steamOption == "ALLTIME" {
+		filename = "🎮 Steam playtime leaderboard"
+		lines, err = box.GetPlayTime(ctx, steamID, multiLined, appIDList...)
+		if err != nil {
+			panic("GetPlayTime err:" + err.Error())
+		}
+	} else if steamOption == "RECENT" {
+		filename = "🎮 Recently played Steam games"
+		lines, err = box.GetRecentGames(ctx, steamID, multiLined)
+		if err != nil {
+			panic("GetRecentGames err:" + err.Error())
+		}
+	}
 
 	if updateGist {
 		gist, err := box.GetGist(ctx, gistID)
@@ -84,6 +110,6 @@ func main() {
 		if err != nil {
 			fmt.Println(err)
 		}
-		fmt.Println("updating markdown successfully on", markdownFile)
+		fmt.Println("updating markdown successfully on ", markdownFile)
 	}
 }

@@ -1,5 +1,7 @@
 github.com/YouEclipse/steam-go v0.0.0-20200607095305-d18221313a45 h1:kUsRRKxquRByz4Jd2e0eF8SYFCnvlipmXbuWSBpWzCI=
 github.com/YouEclipse/steam-go v0.0.0-20200607095305-d18221313a45/go.mod h1:jlP5azGfKH8ZkFb2h1pK2n2JIZlbHbStD841RkwcH7I=
+github.com/YouEclipse/steam-go v0.0.0-20200711125252-eccd89412923 h1:4maE6WS9ueQD1TzZ1pdHgW0Jm4Sb/UOJL1n8eZoGVmY=
+github.com/YouEclipse/steam-go v0.0.0-20200711125252-eccd89412923/go.mod h1:jlP5azGfKH8ZkFb2h1pK2n2JIZlbHbStD841RkwcH7I=
 github.com/google/go-github v17.0.0+incompatible h1:N0LgJ1j65A7kfXrZnUDaYCs/Sf4rEjNlfyDHW9dolSY=
 github.com/google/go-github v17.0.0+incompatible/go.mod h1:zLgOLi98H3fifZn+44m+umXrS52loVEgC2AApnigrVQ=
 github.com/google/go-querystring v1.0.0 h1:Xkwi/a1rcvNg1PPYe5vI8GbeBY/jrVuDX5ASuANWTrk=
