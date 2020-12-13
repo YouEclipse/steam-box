@@ -90,17 +90,17 @@ func (b *Box) GetPlayTime(ctx context.Context, steamID uint64, multiLined bool, 
 			line := pad(getNameEmoji(game.Appid, game.Name), " ", 35) + " " +
 				pad(fmt.Sprintf("🕘 %d hrs %d mins", hours, mins), "", 16)
 			lines = append(lines, line)
-		} 
+		}
 		max++
 	}
 	return lines, nil
 }
 
 // GetRecentGames gets 5 recently played games from the Steam API.
-func (b *Box) GetRecentGames (ctx context.Context, steamID uint64, multiLined bool) ([]string, error) {
+func (b *Box) GetRecentGames(ctx context.Context, steamID uint64, multiLined bool) ([]string, error) {
 	params := &steam.GetRecentlyPlayedGamesParams{
-		SteamID:                steamID,
-		Count:                  5,
+		SteamID: steamID,
+		Count:   5,
 	}
 
 	gameRet, err := b.steam.IPlayerService.GetRecentlyPlayedGames(ctx, params)
@@ -131,7 +131,7 @@ func (b *Box) GetRecentGames (ctx context.Context, steamID uint64, multiLined bo
 			line := pad(getNameEmoji(game.Appid, game.Name), " ", 35) + " " +
 				pad(fmt.Sprintf("🕘 %d hrs %d mins", hours, mins), "", 16)
 			lines = append(lines, line)
-		} 
+		}
 		max++
 	}
 	return lines, nil
@@ -180,21 +180,22 @@ func pad(s, pad string, targetLength int) string {
 func getNameEmoji(id int, name string) string {
 	// hard code some game's emoji
 	var nameEmojiMap = map[int]string{
-		70:     "λ ", // Half-Life
-		220:    "λ² ", // Half-Life 2
-		500:    "🧟 ", // Left 4 Dead
-		550:    "🧟 ", // Left 4 Dead 2
-		570:    "⚔️ ", // Dota 2
-		730:    "🔫 ", // CS:GO
-		8930:   "🌏 ", // Sid Meier's Civilization V
-		252950: "🚀 ", // Rocket League
-		269950: "✈️ ", // X-Plane 11
-		271590: "🚓 ", // GTA 5
-		359550: "🔫 ", // Tom Clancy's Rainbow Six Siege
-		431960: "💻 ", // Wallpaper Engine
-		578080: "🍳 ", // PUBG
-		945360: "🕵️‍♂️ ", // Among Us
-		1250410: "🛩️ ", // Microsoft Flight Simulator
+		70:      "λ ",     // Half-Life
+		220:     "λ² ",    // Half-Life 2
+		500:     "🧟 ",     // Left 4 Dead
+		550:     "🧟 ",     // Left 4 Dead 2
+		570:     "⚔️ ",    // Dota 2
+		730:     "🔫 ",     // CS:GO
+		8930:    "🌏 ",     // Sid Meier's Civilization V
+		252950:  "🚀 ",     // Rocket League
+		269950:  "✈️ ",    // X-Plane 11
+		271590:  "🚓 ",     // GTA 5
+		359550:  "🔫 ",     // Tom Clancy's Rainbow Six Siege
+		431960:  "💻 ",     // Wallpaper Engine
+		578080:  "🍳 ",     // PUBG
+		945360:  "🕵️‍♂️ ", // Among Us
+		1250410: "🛩️ ",    // Microsoft Flight Simulator
+		1091500: "🦾 ",     // Cyberpunk 2077
 	}
 
 	if emoji, ok := nameEmojiMap[id]; ok {
