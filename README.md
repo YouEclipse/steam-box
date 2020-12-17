@@ -25,7 +25,7 @@ English | [简体中文](./README_zh.md)
 1. Create a new public GitHub Gist (https://gist.github.com/)
 1. Create a token with the `gist` scope and copy it. (https://github.com/settings/tokens/new)
 1. Create a Steam  API key. (https://steamcommunity.com/dev/apikey)
-1. Find the steam ID of your account. (https://steamid.io)
+1. Find the steam ID (steamID64) of your account. (https://steamid.io)
 1. For updating a markdown file，add comments to the place where you want to update in the markdown file.
    ```markdown
     <!-- steam-box start -->
