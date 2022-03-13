@@ -17,9 +17,9 @@ jobs:
     name: Upddate-gist
     runs-on: ubuntu-latest
     env:
-          GH_TOKEN: ${{ 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 }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GIST_ID: 8bf56353bcb3a8e798b55b546b9619cf
-          STEAM_API_KEY: ${{ 83B27DF59D6BE391FE3D83F62877E8D9 }}
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           STEAM_ID: ${{ 76561198318451411 }}
     steps:
 
